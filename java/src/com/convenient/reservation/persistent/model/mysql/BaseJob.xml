@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 用户 -->
+<mapper namespace="BaseJob">
+	<select id="queryBaseUsers" parameterType="map" resultType="baseUser">
+		SELECT * FROM base_user
+		<where>
+			<if test="null != userid and '' != userid">
+				AND userid like #{userid}
+			</if>
+			<if test="null != username and '' != username">
+				AND username like #{username}
+			</if>
+			<if test="null != companyid and '' != companyid">
+				AND companyid = #{companyid}
+			</if>
+			<if test="null != deptid and '' != deptid">
+				AND deptid = #{deptid}
+			</if>
+			<if test="null != dutyid and '' != dutyid">
+				AND dutyid = #{dutyid}
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryBaseUser" parameterType="string" resultType="baseUser">
+		SELECT * FROM base_user WHERE userid = #{value}
+	</select>
+	
+	<select id="queryCountBaseUsers" parameterType="map" resultType="int">
+		SELECT COUNT(1) FROM base_user
+		<where>
+			<if test="null != userid and '' != userid">
+				AND userid like #{userid}
+			</if>
+			<if test="null != username and '' != username">
+				AND username like #{username}
+			</if>
+			<if test="null != companyid and '' != companyid">
+				AND companyid = #{companyid}
+			</if>
+			<if test="null != deptid and '' != deptid">
+				AND deptid = #{deptid}
+			</if>
+			<if test="null != dutyid and '' != dutyid">
+				AND dutyid = #{dutyid}
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryCountBaseUser" parameterType="string" resultType="int">
+		SELECT COUNT(1) FROM base_user WHERE userid = #{value}
+	</select>
+	
+	<select id="queryBaseUserFromDept" parameterType="string" resultType="hashmap">
+		SELECT * FROM BASE_USER t WHERE deptid = #{value} ORDER BY t.userid ASC
+	</select>
+	
+	<select id="queryCountBaseUserFromDept" parameterType="string" resultType="int">
+		SELECT COUNT(1) FROM base_user WHERE deptid = #{value}
+	</select>
+	
+	<select id="queryCountBaseUserFromDuty" parameterType="string" resultType="int">
+		SELECT COUNT(1) FROM base_user WHERE dutyid = #{value}
+	</select>
+	
+	<select id="queryBaseUsersByRoleid" parameterType="map" resultType="hashmap">
+		SELECT DISTINCE 
+			userid,
+			username,
+			deptid,
+			a.companyid,
+			b.companyname
+		FROM base_user a, base_org b
+		WHERE a.deptid = b.orgid 
+		<if test="null != userid and '' != userid">
+			AND userid like #{userid}
+		</if>
+		<if test="null != username and '' != username">
+			AND username like #{username}
+		</if>
+		<if test="null != deptid and '' != deptid">
+			AND a.deptid = #{deptid}
+		</if>
+		<if test="null != companyid and '' != companyid">
+			AND a.companyid = #{companyid}
+		</if>
+		<if test="null != roleid and '' != roleid">
+			AND userid NOT IN (SELECT userid FROM base_user_role WHERE roleid = #{roleid})
+		</if>
+		ORDER BY userid
+	</select>
+	
+	<insert id="execInsertBaseUser" parameterType="baseUser">
+		INSERT INTO base_user(username,pwd,deptid,companyid,dutyid,ip,email,phone,locked,userid) 
+		VALUES (#{username},#{pwd},#{deptid},#{companyid},#{dutyid},#{ip},#{email},#{phone},#{locked},#{userid})
+	</insert>
+	
+	<update id="execUpdateBaseUser" parameterType="baseUser">
+		UPDATE base_user SET 
+			pwd=#{pwd},
+			username=#{username},
+			deptid=#{deptid},
+			dutyid=#{dutyid},
+			companyid=#{companyid},
+			ip=#{ip},
+			email=#{email},
+			phone=#{phone},
+			locked=#{locked} 
+		WHERE userid=#{userid}
+	</update>
+	
+	<delete id="execDeleteBaseUser" parameterType="string">
+		DELETE FROM base_user WHERE userid=#{value}
+	</delete>
+	
+	<select id="queryCountBaseUsersByRoleid" parameterType="map" resultType="int">
+		SELECT COUNT(1) FROM (
+		SELECT DISTINCT userid,username,deptid,a.companyid,b.companyname FROM base_user a, base_org b
+		WHERE a.deptid = b.orgid
+		<if test="null != userid and '' != userid">
+			AND userid like #{userid}
+		</if>
+		<if test="null != username and '' != username">
+			AND username like #{username}
+		</if>
+		<if test="null != deptid and '' != deptid">
+			AND a.deptid = #{deptid}
+		</if>
+		<if test="null != companyid and '' != companyid">
+			AND a.companyid = #{companyid}
+		</if>
+		<if test="null != roleid and '' != roleid">
+			AND userid NOT IN (SELECT userid FROM base_user_role WHERE roleid = #{roleid})
+		</if>
+		) 
+	</select>
+	
+	<select id="queryBaseUserFromDeptNoSalaryLevels" parameterType="string" resultType="hashmap">
+		SELECT * FROM base_user t WHERE deptid = #{value} AND t.userid NOT IN (SELECT slu.USERID FROM salary_levels_users slu) ORDER BY t.userid ASC
+	</select>
+	
+	<select id="queryBaseUserCode" parameterType="map" resultType="string">
+		SELECT code FROM cust_mobile_validatecode WHERE mobile = #{mobile}
+	</select>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<!-- 项目名称 -->
+	<display-name>reservation</display-name>
+
+	<!-- 设置编码过滤器 begin -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.ftl</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.shtml</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.vm</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	<!-- 设置编码过滤器 end -->
+
+	<!-- 系统初始化数据 begin -->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>reservation.root</param-value>
+	</context-param>
+
+	<!-- spring使用的log4j配置 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:com/convenient/config/log4j/log4j.properties</param-value>
+	</context-param>
+
+	<!--Spring默认刷新Log4j配置文件的间隔,单位为millisecond -->
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>60000</param-value>
+	</context-param>
+	<!-- 系统初始化数据 end -->
+
+	<!-- spring启动log4j监听 begin -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<!-- spring启动log4j监听 end -->
+
+	<!-- springMVC begin -->
+	<servlet>
+		<servlet-name>springMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:com/convenient/config/spring/spring.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<!-- springMVC end -->
+	
+	<!-- session 实效时间 begin -->
+	<session-config>
+		<!-- Default to 30 minute session timeouts -->
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<!-- session 实效时间 end -->
+	
+	<!-- 自定义servlet begin -->
+	<!-- Druid监控 -->
+  	<servlet>
+    	<servlet-name>DruidStatView</servlet-name>
+    	<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>DruidStatView</servlet-name>
+    	<url-pattern>/druid/*</url-pattern>
+  	</servlet-mapping>
+  	<!-- Druid监控 -->
+  	<!-- 自定义servlet end -->
+
+	<!-- 错误代码 begin -->
+	<error-page>  
+    	<exception-type>java.lang.Throwable</exception-type>  
+    	<location>/error/500.html</location>  
+	</error-page>  
+	<error-page>  
+    	<error-code>500</error-code>  
+    	<location>/error/500.html</location>  
+	</error-page>  
+	<error-page>  
+    	<error-code>404</error-code>  
+    	<location>/error/404.html</location>  
+	</error-page>
+	<!-- 错误代码 end -->
+	
+	<!-- 欢迎页面列表 begin -->
+	<welcome-file-list>
+		<welcome-file>welcome.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- 欢迎页面列表 end -->
+</web-app>
