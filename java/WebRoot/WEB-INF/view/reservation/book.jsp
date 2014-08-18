@@ -48,12 +48,14 @@
 						copy : $("#copy").val(),
 						demand : $("#demand").val()
 					},
-					async : false,
-					type : "post",
+					async : true,
+					type : "POST",
 					success : function(data) {
 						//var dataObject = eval('(' + data + ')');
 						if (data == 'SUCCESS') {
 							$("#bookMode").modal('hide');
+							
+							alert("Success!\nPay the money to xingyunyun!");
 							
 							window.location.reload();
 						} else {
@@ -69,5 +71,4 @@
 					}
 				});
 			}
-			
 		</script>

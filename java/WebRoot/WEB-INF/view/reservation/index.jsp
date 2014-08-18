@@ -39,7 +39,7 @@
 			});
 			
 			function showBookModal(order) {
-				var afterLoginScript = "showBookModal('" + order + "')";
+				var afterLoginScript = "showBookModal('" + order + "');";
 				
 				if (checkSession(afterLoginScript) == true){
 					$("#book_form")[0].reset();
@@ -84,8 +84,8 @@
 								<span name="deadline_zone"></span>
 							</p>
 							<p>
-								<a href="javascript:void();" class="btn btn-primary" role="button" onclick="showBookModal('${order.order_id}')">Book</a> 
-								<a href="javascript:void();" class="btn btn-default" role="button" onclick="showDetail()">Detail</a>
+								<a href="javascript:void(0);" class="btn btn-primary" role="button" onclick="showBookModal('${order.order_id}')">Book</a> 
+								<a href="javascript:void(0);" class="btn btn-default" role="button" onclick="showDetail()">Detail</a>
 							</p>
 						</div>
 					</div>

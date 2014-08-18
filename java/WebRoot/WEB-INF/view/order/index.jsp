@@ -52,7 +52,7 @@
 					data : {
 					},
 					async : false,
-					type : "post",
+					type : "POST",
 					success : function(data) {
 						if (data != null && data != "") {
 							window.location.reload();
@@ -110,7 +110,7 @@
 								<span name="deadline_zone"></span>
 							</p>
 							<p>
-								<a href="javascript:void();" class="btn btn-default" role="button" onclick="showDetail('${order.order_id }')">Detail</a>
+								<a href="javascript:void(0);" class="btn btn-default" role="button" onclick="showDetail('${order.order_id }')">Detail</a>
 							</p>
 						</div>
 					</div>

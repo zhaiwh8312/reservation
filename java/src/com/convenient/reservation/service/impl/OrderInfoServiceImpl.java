@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.convenient.base.tools.DateUtil;
 import com.convenient.base.tools.GenerateUUID;
 import com.convenient.reservation.persistent.dao.OrderDetailInfoDAO;
 import com.convenient.reservation.persistent.dao.OrderInfoDAO;
@@ -79,7 +80,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		orderInfo.setOrder_name("中午快餐");
 		orderInfo.setReservation_id("1");
 		orderInfo.setGood_id("1");
-		orderInfo.setOrder_create_time(new Date().toLocaleString());
+		orderInfo.setOrder_create_time(DateUtil.getCurrentDateTime());
 		orderInfo.setOrder_amount(0.0d);
 		orderInfo.setOrder_status("1");
 		orderInfo.setIs_done("0");

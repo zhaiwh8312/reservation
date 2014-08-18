@@ -37,7 +37,7 @@
 						detailId : detailId,
 					},
 					async : false,
-					type : "post",
+					type : "POST",
 					success : function(data) {
 						if (data != null && data != "") {
 							window.location.reload();
@@ -60,7 +60,7 @@
 						orderId : orderId
 					},
 					async : false,
-					type : "post",
+					type : "POST",
 					success : function(data) {
 						if (data != null && data != "") {
 							window.location.href="<%=request.getContextPath() %>/order/index";

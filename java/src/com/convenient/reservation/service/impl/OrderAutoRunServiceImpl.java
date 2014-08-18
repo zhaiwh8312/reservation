@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.convenient.base.tools.DateUtil;
 import com.convenient.base.tools.GenerateUUID;
 import com.convenient.reservation.persistent.dao.GoodInfoDAO;
 import com.convenient.reservation.persistent.dao.OrderInfoDAO;
@@ -40,7 +41,7 @@ public class OrderAutoRunServiceImpl implements OrderAutoRunService {
 		Map<String, String> condition = new HashMap<String, String>();
 		
 		condition.put("reservationStatus", "1");
-		condition.put("nowTime", new Date().toLocaleString());
+		condition.put("nowTime", DateUtil.getCurrentDateTime());
 		condition.put("orderStatus", "1");
 		
 		List<ReservationInfo> list = reservationInfoDAO.queryReservationListForReadyToBook(condition);
@@ -52,7 +53,7 @@ public class OrderAutoRunServiceImpl implements OrderAutoRunService {
 			orderInfo.setOrder_name(reservation.getReservation_title());
 			orderInfo.setReservation_id(reservation.getReservation_id());
 			orderInfo.setGood_id(reservation.getGood_id());
-			orderInfo.setOrder_create_time(new Date().toLocaleString());
+			orderInfo.setOrder_create_time(DateUtil.getCurrentDateTime());
 			orderInfo.setOrder_amount(0.0d);
 			orderInfo.setOrder_status("1");
 			
@@ -71,13 +72,13 @@ public class OrderAutoRunServiceImpl implements OrderAutoRunService {
 		 */
 		Map<String, String> condition = new HashMap<String, String>();
 		
-		condition.put("nowTime", new Date().toLocaleString());
+		condition.put("nowTime", DateUtil.getCurrentDateTime());
 		condition.put("orderStatus", "1");
 		
 		List<OrderInfo> list = orderInfoDAO.queryOrderInfoForTimeToClose(condition);
 		
 		for (OrderInfo order : list) {
-			order.setOrder_end_time(new Date().toLocaleString());
+			order.setOrder_end_time(DateUtil.getCurrentDateTime());
 			order.setOrder_status("0");
 			
 			orderInfoDAO.execUpdateOrderInfo(order);

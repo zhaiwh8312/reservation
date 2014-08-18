@@ -29,17 +29,17 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul id="topMenu" class="nav navbar-nav">
-						<li id="li_home" class="active"><a href="javascript:void()" onclick="goHome()">Home</a></li>
-						<li id="li_records"><a href="javascript:void()" onclick="goMyRecords()">MyRecords</a></li>
+						<li id="li_home" class="active"><a href="javascript:void(0);" onclick="goHome()">Home</a></li>
+						<li id="li_records"><a href="javascript:void(0);" onclick="goMyRecords()">MyRecords</a></li>
 						<c:if test="${sessionScope.user.user_id == 'xingyunyun@meiti.com' }">
-						<li id="li_order"><a href="javascript:void()" onclick="goOrder()">Order</a></li>
+						<li id="li_order"><a href="javascript:void(0);" onclick="goOrder()">Order</a></li>
 						</c:if>
-						<li id="li_about"><a href="javascript:void()" onclick="showAboutModal()">About</a></li>
+						<li id="li_about"><a href="javascript:void(0);" onclick="showAboutModal()">About</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<c:if test="${sessionScope.user != null }">
 						<li id="user_span" class="dropdown">
-							<a href="javascript:void()" class="dropdown-toggle" data-toggle="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
 								${sessionScope.user.user_name }
 								<span class="caret"></span>
 							</a>
@@ -47,14 +47,14 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#">profile</a></li>
 								<li class="divider"></li>
-								<li><a href="javascript:void()" onclick="signout()">Sign out</a></li>
+								<li><a href="javascript:void(0);" onclick="signout()">Sign out</a></li>
 							</ul>
 						</li>
 						</c:if>
 						<c:if test="${sessionScope.user == null }">
-						<li id="user_span"><a href="javascript:void()" onclick="showLoginModal()">Sign In</a></li>
+						<li id="user_span"><a href="javascript:void(0);" onclick="showLoginModal()">Sign In</a></li>
 						</c:if>
-						<li><a href="javascript:void()" id="timezone" style="width:200px">${formated_now }</a></li>
+						<li><a href="javascript:void(0);" id="timezone" style="width:200px">${formated_now }</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -131,7 +131,7 @@
 					data : {
 					},
 					async : false,
-					type : "post",
+					type : "POST",
 					success : function(data) {
 						if (data == "") {
 							showLoginModal();
@@ -158,6 +158,7 @@
 				$("#sign_form")[0].reset();
 				$("#error_msg").hide();
 				$("#loginMode").modal();
+				$("#email").focus();
 			}
 			
 			function showAboutModal() {
@@ -205,19 +206,19 @@
 						password : hex_md5($("#password").val())
 					},
 					async : true,
-					type : "post",
+					type : "POST",
 					success : function(data) {
 						var dataObject = eval('(' + data + ')');
 						
 						if (dataObject.result == 'success') {
-							var str = '<a href="javascript:void()" class="dropdown-toggle" data-toggle="dropdown">';
+							var str = '<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">';
 							str += dataObject.obj.user_name;
 							str += '<span class="caret"></span></a>';
 							str += '<input type="hidden" name="loginUserId" value="' + dataObject.obj.user_id + '" />';
 							str += '<ul class="dropdown-menu" role="menu">';
 							str += '<li><a href="#">profile</a></li>';
 							str += '<li class="divider"></li>';
-							str += '<li><a href="javascript:void()" onclick="signout()">Sign out</a></li>';
+							str += '<li><a href="javascript:void(0);" onclick="signout()">Sign out</a></li>';
 							str += '</ul>';
 							
 							$("#user_span").html(str);
@@ -251,10 +252,10 @@
 					data : {
 					},
 					async : true,
-					type : "post",
+					type : "POST",
 					success : function(data) {
 						if (data == 'success') {
-							//var str = '<a href="javascript:void()" onclick="showLoginModal()">Sign In</a>';
+							//var str = '<a href="javascript:void();" onclick="showLoginModal()">Sign In</a>';
 							
 							//$("#user_span").html(str);
 							

@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.convenient.base.tools.DateUtil;
 import com.convenient.base.tools.GenerateUUID;
 import com.convenient.reservation.persistent.dao.OrderDetailInfoDAO;
 import com.convenient.reservation.persistent.dao.OrderInfoDAO;
@@ -53,7 +54,7 @@ public class BookingServiceImpl implements BookingService {
 				orderDetail.setOrder_id(order.getOrder_id());
 				orderDetail.setUser_id(userId);
 				orderDetail.setCopy(copy);
-				orderDetail.setBook_time(new Date().toLocaleString());
+				orderDetail.setBook_time(DateUtil.getCurrentDateTime());
 				orderDetail.setDemand(demand);
 				orderDetail.setIs_pay("0");
 				
