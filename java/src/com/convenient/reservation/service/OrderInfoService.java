@@ -23,6 +23,14 @@ public interface OrderInfoService {
 	public List<OrderInfo> getOrderInfoListIsNotDone() throws RuntimeException, Exception;
 	
 	/**
+	 * 获取所有订单
+	 * @return
+	 * @throws RuntimeException
+	 * @throws Exception
+	 */
+	public List<OrderInfo> getOrderInfoAllList() throws RuntimeException, Exception;
+	
+	/**
 	 * 根据订单ID获取订单信息
 	 * @param orderId
 	 * @return

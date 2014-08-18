@@ -30,7 +30,8 @@ public class OrderController {
 	public ModelAndView doIndex(HttpServletRequest request) throws Exception { 
 		ModelAndView mav = new ModelAndView();
 		
-		List<OrderInfo> list = orderInfoService.getOrderInfoListIsNotDone();
+//		List<OrderInfo> list = orderInfoService.getOrderInfoListIsNotDone();
+		List<OrderInfo> list = orderInfoService.getOrderInfoAllList();
 		
 		request.setAttribute("list", list);
 		

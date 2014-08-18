@@ -88,4 +88,10 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		return orderInfoDAO.execInsertOrderInfo(orderInfo);
 	}
 
+	@Override
+	public List<OrderInfo> getOrderInfoAllList() throws RuntimeException,
+			Exception {
+		return orderInfoDAO.queryOrderInfoForAll();
+	}
+
 }

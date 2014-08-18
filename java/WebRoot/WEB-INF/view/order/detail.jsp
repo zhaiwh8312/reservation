@@ -103,9 +103,11 @@
 				<p>
 					<a class="btn btn-default" role="button" onclick="javascript:history.back()">Back</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
+					<c:if test="${orderInfo.is_done == 0 }">
 					<a class="btn btn-info" role="button" onclick="javascript:window.location.reload()">Refresh</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a class="btn btn-primary btn-lg" role="button" onclick="javascript:doneOrder('${orderInfo.order_id}')">Done</a>
+					</c:if>
 				</p>
 			</div>
 		
@@ -122,8 +124,21 @@
 				<tr>
 					<td>${status.count }</td>
 					<td>
+						<c:if test="${orderInfo.is_done == 0 }">
 						<c:if test="${detail.is_pay == 0 }">
 							<button type="button" class="btn btn-primary btn-xs" onclick="payOrder('${detail.detail_id }')"><span class="glyphicon glyphicon-usd"></span></button>
+						</c:if>
+						<c:if test="${detail.is_pay == 1 }">
+							<span class="label label-success">已支付</span>
+						</c:if>
+						</c:if>
+						<c:if test="${orderInfo.is_done == 1 }">
+						<c:if test="${detail.is_pay == 0 }">
+							<span class="label label-warning">未支付</span>
+						</c:if>
+						<c:if test="${detail.is_pay == 1 }">
+							<span class="label label-success">已支付</span>
+						</c:if>
 						</c:if>
 					</td>
 					<td>${detail.user_name }</td>
