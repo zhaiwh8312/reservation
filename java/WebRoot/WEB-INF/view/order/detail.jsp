@@ -101,12 +101,12 @@
 					</div>
 				</p>
 				<p>
-					<a class="btn btn-default" role="button" onclick="javascript:history.back()">Back</a>
+					<a class="btn btn-default" role="button" onclick="javascript:history.back()">返回<!-- Back --></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<c:if test="${orderInfo.is_done == 0 }">
-					<a class="btn btn-info" role="button" onclick="javascript:window.location.reload()">Refresh</a>
+					<a class="btn btn-info" role="button" onclick="javascript:window.location.reload()">刷新<!-- Refresh --></a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a class="btn btn-primary btn-lg" role="button" onclick="javascript:doneOrder('${orderInfo.order_id}')">Done</a>
+					<a class="btn btn-primary btn-lg" role="button" onclick="javascript:doneOrder('${orderInfo.order_id}')">完成<!-- Done --></a>
 					</c:if>
 				</p>
 			</div>

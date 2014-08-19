@@ -84,8 +84,8 @@
 								<span name="deadline_zone"></span>
 							</p>
 							<p>
-								<a href="javascript:void(0);" class="btn btn-primary" role="button" onclick="showBookModal('${order.order_id}')">Book</a> 
-								<a href="javascript:void(0);" class="btn btn-default" role="button" onclick="showDetail()">Detail</a>
+								<a href="javascript:void(0);" class="btn btn-primary" role="button" onclick="showBookModal('${order.order_id}')">预订<!-- Book --></a> 
+								<a href="javascript:void(0);" class="btn btn-default" role="button" onclick="showDetail()">详细信息<!-- Detail --></a>
 							</p>
 						</div>
 					</div>

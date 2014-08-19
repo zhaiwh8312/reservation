@@ -6,7 +6,7 @@
 			    <div class="modal-content">
 			      	<div class="modal-header">
 			        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			        	<h4 class="modal-title">Book</h4>
+			        	<h4 class="modal-title">预订<!-- Book --></h4>
 			      	</div>
 			      	<div class="modal-body">
 			      		<form id="book_form" role="form">
@@ -28,12 +28,12 @@
 				      			 -->
 				      		</div>
 				      		<br/>
-				      		<input type="text" class="form-control" id="demand" name="demand" style="width:200px" maxlength="10" placeholder="demand">
+				      		<input type="text" class="form-control" id="demand" name="demand" style="width:200px" maxlength="10" placeholder="要求">
 			      		</form>
 			      	</div>
 			      	<div class="modal-footer">
-			        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        	<button type="button" class="btn btn-primary" onclick="booking()">Book</button>
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">关闭<!-- Close --></button>
+			        	<button type="button" class="btn btn-primary" onclick="booking()">确认预订<!-- Book --></button>
 			      	</div>
 			    </div><!-- /.modal-content -->
 		  	</div><!-- /.modal-dialog -->
@@ -55,7 +55,8 @@
 						if (data == 'SUCCESS') {
 							$("#bookMode").modal('hide');
 							
-							alert("Success!\nPay the money to xingyunyun!");
+							//alert("Success!\nPay the money to xingyunyun!");
+							alert("预订成功！\n请及时把钱给邢云云!");
 							
 							window.location.reload();
 						} else {

@@ -2,6 +2,6 @@
 <div class="footer">
 	<hr />
 	<div class="container">
-		<p>© Company 2014</p>
+		<p>© Very Convenient Company 2014</p>
 	</div>
 </div>

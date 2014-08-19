@@ -74,8 +74,8 @@
 		<jsp:include page="/WEB-INF/view/base/top.jsp" flush="true"/>
 		<div class="container">
 			<div class="row">
-			<a class="btn btn-info" role="button" onclick="javascript:window.location.reload()">Refresh</a>
-			<a class="btn btn-warning" role="button" onclick="createOrder()">CreateOrder</a>
+			<a class="btn btn-info" role="button" onclick="javascript:window.location.reload()">刷新<!-- Refresh --></a>
+			<a class="btn btn-warning" role="button" onclick="createOrder()">新建订单<!-- CreateOrder --></a>
 			</div>
 			<br/>
 			<div class="row">
@@ -110,7 +110,7 @@
 								<span name="deadline_zone"></span>
 							</p>
 							<p>
-								<a href="javascript:void(0);" class="btn btn-default" role="button" onclick="showDetail('${order.order_id }')">Detail</a>
+								<a href="javascript:void(0);" class="btn btn-default" role="button" onclick="showDetail('${order.order_id }')">详细信息<!-- Detail --></a>
 							</p>
 						</div>
 					</div>

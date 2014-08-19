@@ -29,12 +29,12 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul id="topMenu" class="nav navbar-nav">
-						<li id="li_home" class="active"><a href="javascript:void(0);" onclick="goHome()">Home</a></li>
-						<li id="li_records"><a href="javascript:void(0);" onclick="goMyRecords()">MyRecords</a></li>
+						<li id="li_home" class="active"><a href="javascript:void(0);" onclick="goHome()">首页<!-- Home --></a></li>
+						<li id="li_records"><a href="javascript:void(0);" onclick="goMyRecords()">我的购买记录<!-- MyRecords --></a></li>
 						<c:if test="${sessionScope.user.user_id == 'xingyunyun@meiti.com' }">
-						<li id="li_order"><a href="javascript:void(0);" onclick="goOrder()">Order</a></li>
+						<li id="li_order"><a href="javascript:void(0);" onclick="goOrder()">订单管理<!-- Order --></a></li>
 						</c:if>
-						<li id="li_about"><a href="javascript:void(0);" onclick="showAboutModal()">About</a></li>
+						<li id="li_about"><a href="javascript:void(0);" onclick="showAboutModal()">关于<!-- About --></a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<c:if test="${sessionScope.user != null }">
@@ -45,14 +45,14 @@
 							</a>
 							<input type="hidden" name="loginUserId" value="${sessionScope.user.user_id }" />
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">profile</a></li>
+								<li><a href="#">个人信息<!-- profile --></a></li>
 								<li class="divider"></li>
-								<li><a href="javascript:void(0);" onclick="signout()">Sign out</a></li>
+								<li><a href="javascript:void(0);" onclick="signout()">退出<!-- Sign out --></a></li>
 							</ul>
 						</li>
 						</c:if>
 						<c:if test="${sessionScope.user == null }">
-						<li id="user_span"><a href="javascript:void(0);" onclick="showLoginModal()">Sign In</a></li>
+						<li id="user_span"><a href="javascript:void(0);" onclick="showLoginModal()">登录<!-- Sign In --></a></li>
 						</c:if>
 						<li><a href="javascript:void(0);" id="timezone" style="width:200px">${formated_now }</a></li>
 					</ul>
@@ -67,24 +67,24 @@
 			    <div class="modal-content">
 			      	<div class="modal-header">
 			        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			        	<h4 class="modal-title">Sign In</h4>
+			        	<h4 class="modal-title">登录<!-- Sign In --></h4>
 			      	</div>
 			      	<div class="modal-body">
 			      		<form id="sign_form" class="form-signin" role="form">
 			      			<div id="error_msg" class="alert alert-danger" role="alert" style="display:none"></div>
 				      		<div class="input-group">
 				      			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				      			<input type="email" id="email" class="form-control" placeholder="Email address" required="" autofocus="">
+				      			<input type="email" id="email" class="form-control" placeholder="公司邮箱地址" required="" autofocus="">
 				      		</div>
 	        				<div class="input-group">
 				      			<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				      			<input type="password" id="password" class="form-control" placeholder="Password" required="">
+				      			<input type="password" id="password" class="form-control" placeholder="密码" required="">
 				      		</div>
 			      		</form>
 			      	</div>
 			      	<div class="modal-footer">
-			        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        	<button type="button" class="btn btn-primary" onclick="signin()">Sign In</button>
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">关闭<!-- Close --></button>
+			        	<button type="button" class="btn btn-primary" onclick="signin()">登录<!-- Sign In --></button>
 			      	</div>
 			      	<input type="hidden" id="afterLoginScript" name="afterLoginScript" value=""/>
 			    </div><!-- /.modal-content -->
@@ -218,7 +218,7 @@
 							str += '<ul class="dropdown-menu" role="menu">';
 							str += '<li><a href="#">profile</a></li>';
 							str += '<li class="divider"></li>';
-							str += '<li><a href="javascript:void(0);" onclick="signout()">Sign out</a></li>';
+							str += '<li><a href="javascript:void(0);" onclick="signout()">退出<!-- Sign out --></a></li>';
 							str += '</ul>';
 							
 							$("#user_span").html(str);
@@ -259,7 +259,7 @@
 							
 							//$("#user_span").html(str);
 							
-							window.location.reload();
+							window.location.href = "<%=request.getContextPath() %>";
 						}
 					},
 					error : function(err) {
